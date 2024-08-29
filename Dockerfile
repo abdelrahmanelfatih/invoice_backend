@@ -1,27 +1,17 @@
-# Use an official Python runtime as a parent image
+# Use the official Python image from the Docker Hub
 FROM python:3.11
-
-# Set environment variables
-ENV FLASK_APP=backend
-ENV FLASK_RUN_HOST=0.0.0.0
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements file into the container at /app
+# Copy the requirements file into the container
 COPY requirements.txt /app/
 
-# Install any needed packages specified in requirements.txt
+# Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code into the container at /app
-COPY . /app/
+# Copy the rest of the application code into the container
+COPY . /app
 
-# Expose port 5000 for the app
-EXPOSE 5000
-
-# Define environment variable for Flask
-ENV FLASK_ENV=production
-
-# Run the Flask application using gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "backend:app"]
+# Command to run the application using Gunicorn
+CMD ["gunicorn", "mr.crabs backend:app", "--bind", "0.0.0.0:5000"]
