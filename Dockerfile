@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app
 
 # Command to run the application using Gunicorn
-CMD ["gunicorn", "mr.crabs backend:app", "--bind", "0.0.0.0:5000"]
+CMD ["gunicorn", "code:app", "--bind", "0.0.0.0:5000"]
