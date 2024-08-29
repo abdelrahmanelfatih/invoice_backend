@@ -1,1 +1,1 @@
-web: gunicorn mr.crabs backend:app --bind 0.0.0.0:$PORT
+web: gunicorn code:app --bind 0.0.0.0:$PORT
